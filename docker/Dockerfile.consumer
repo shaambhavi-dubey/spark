@@ -1,0 +1,20 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+ENV PIP_DEFAULT_TIMEOUT=300 \
+    PIP_RETRIES=10
+
+RUN pip install --no-cache-dir --upgrade pip
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+COPY docker/requirements-consumer.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY consumer/ ./consumer/
+COPY xgb_fraud_model.json ./xgb_fraud_model.json
+
+CMD ["python", "-u", "consumer/score_transactions.py"]

@@ -1,0 +1,27 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+ENV PIP_DEFAULT_TIMEOUT=300 \
+    PIP_RETRIES=10
+
+# Upgrade pip first — the bundled pip 24.0 has poor retry/hash-check
+# handling on flaky connections. This alone fixes the charset_normalizer
+# hash mismatch (which was really a 0-byte corrupted download).
+RUN pip install --no-cache-dir --upgrade pip
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+    libgomp1 \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install PyTorch CPU-only (~60MB instead of ~200MB GPU wheel)
+RUN pip install --no-cache-dir torch --index-url https://download.pytorch.org/whl/cpu
+
+# Install remaining deps (torch-geometric and friends)
+COPY docker/requirements-retrain.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY retrain/ ./retrain/
+COPY shared_graph.pkl ./shared_graph.pkl
+
+CMD ["python", "-u", "retrain/periodic_retrain.py"]

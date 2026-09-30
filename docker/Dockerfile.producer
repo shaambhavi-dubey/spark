@@ -1,0 +1,16 @@
+FROM python:3.11-slim
+
+WORKDIR /app
+
+ENV PIP_DEFAULT_TIMEOUT=300 \
+    PIP_RETRIES=10
+
+RUN pip install --no-cache-dir --upgrade pip
+
+COPY docker/requirements-producer.txt ./requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY producer/ ./producer/
+COPY shared_graph.pkl ./shared_graph.pkl
+
+CMD ["python", "-u", "producer/produce_transactions.py"]

@@ -1,0 +1,14 @@
+upi-env/
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.git/
+.gitignore
+.gemini/
+embeddings/
+hello_kafka_consumer.py
+hello_kafka_producer.py
+hello_redis.py
+*.egg-info/
