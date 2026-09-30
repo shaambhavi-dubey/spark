@@ -3,10 +3,10 @@
 <div align="center">
 
 <a href="#">
-  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&multiline=true&repeat=true&width=700&height=80&lines=Graph+Neural+Networks+%2B+XGBoost+%2B+Kafka;Real-Time+Fraud+Scoring+in+%3C20ms;One+Command+to+Run+Everything" alt="Typing SVG" />
+  <img src="https://readme-typing-svg.demolab.com?font=JetBrains+Mono&weight=600&size=22&duration=3000&pause=1000&color=58A6FF&center=true&vCenter=true&repeat=true&width=700&height=35&lines=Graph+Neural+Networks+%2B+XGBoost+%2B+Kafka;Real-Time+Fraud+Scoring+in+%3C20ms;One+Command+to+Run+Everything" alt="Typing SVG" />
 </a>
 
-<br/>
+<br/><br/>
 
 <img src="https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=apache-kafka&logoColor=white" alt="Kafka"/>
 <img src="https://img.shields.io/badge/Redis-DC382D?style=for-the-badge&logo=redis&logoColor=white" alt="Redis"/>
